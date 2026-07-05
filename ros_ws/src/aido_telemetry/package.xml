@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>aido_telemetry</name>
+  <version>0.0.0</version>
+  <description>Aido Rover telemetry ROS 2 package</description>
+  <maintainer email="shaun@todo.todo">Shaun Thomas</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

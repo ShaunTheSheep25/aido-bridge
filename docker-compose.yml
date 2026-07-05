@@ -1,0 +1,49 @@
+services:
+  publisher:
+    build: .
+    command: >
+      /bin/bash -c "
+      source /opt/ros/humble/setup.bash &&
+      source /ros_ws/install/setup.bash &&
+      python3 /ros_ws/src/aido_telemetry/aido_telemetry/publisher.py"
+    network_mode: host
+    container_name: aido_publisher
+    environment:
+      - ROS_DOMAIN_ID=0
+      - FASTRTPS_DEFAULT_PROFILES_FILE=/config/fastrtps-udp-only.xml
+
+  subscriber:
+    build: .
+    command: >
+      /bin/bash -c "
+      source /opt/ros/humble/setup.bash &&
+      source /ros_ws/install/setup.bash &&
+      python3 /ros_ws/src/aido_telemetry/aido_telemetry/subscriber.py"
+    network_mode: host
+    container_name: aido_subscriber
+    environment:
+      - ROS_DOMAIN_ID=0
+      - FASTRTPS_DEFAULT_PROFILES_FILE=/config/fastrtps-udp-only.xml
+
+  service:
+    build: .
+    command: >
+      /bin/bash -c "
+      source /opt/ros/humble/setup.bash &&
+      source /ros_ws/install/setup.bash &&
+      python3 /ros_ws/src/aido_telemetry/aido_telemetry/service.py"
+    network_mode: host
+    container_name: aido_service
+    environment:
+      - ROS_DOMAIN_ID=0
+      - FASTRTPS_DEFAULT_PROFILES_FILE=/config/fastrtps-udp-only.xml
+
+  bridge:
+    build: .
+    container_name: aido_bridge
+    network_mode: host
+    environment:
+      - ROS_DOMAIN_ID=0
+      - FASTRTPS_DEFAULT_PROFILES_FILE=/config/fastrtps-udp-only.xml
+    depends_on:
+      - publisher
