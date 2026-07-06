@@ -45,5 +45,6 @@ services:
     environment:
       - ROS_DOMAIN_ID=0
       - FASTRTPS_DEFAULT_PROFILES_FILE=/config/fastrtps-udp-only.xml
+      - PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
     depends_on:
       - publisher

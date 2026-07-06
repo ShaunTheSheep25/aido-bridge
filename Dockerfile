@@ -13,7 +13,8 @@ WORKDIR /app
 COPY config/fastrtps-udp-only.xml /config/fastrtps-udp-only.xml
 COPY pyproject.toml ./
 COPY src ./src
-RUN pip3 install -e .
+COPY tests ./tests
+RUN pip3 install -e ".[dev]"
 
 COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
